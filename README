@@ -1,0 +1,3 @@
+mkdir ../data
+python make_test_data.py
+python script1.py
