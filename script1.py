@@ -9,12 +9,12 @@ def calc(sex, percent):
 		return percent**2
 
 	
-fs = [f for f in os.listdir('../data/test1') if f.endswith('.csv') ]
-ds = dataset.Dataset('../data/test1/', fs, 
+fs = [f for f in os.listdir('../data/test_large') if f.endswith('.csv') ]
+ds = dataset.Dataset('../data/test_large/', fs, 
 	['id', 'sex', 'age', 'percent'], [int, str, int, float])
 
 # todo path not needed, infer
 print ds.files
 
 op = operators.Transform(calc)
-op(ds, n_procs=4)
+op(ds, n_procs=20)

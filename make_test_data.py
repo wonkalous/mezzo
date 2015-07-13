@@ -3,9 +3,9 @@ import numpy
 import os
 
 
-root_name = "test1"
-n_files = 50
-rows_mean = 1000  # aim for 100mb
+root_name = "test_large"
+n_files = 2
+rows_mean = 2000000  # aim for 100mb
 header = [
 	('id', lambda: int(numpy.random.random()*1e7)),
 	('sex', lambda: numpy.random.choice(['M', 'F'])),
@@ -23,7 +23,9 @@ for n in xrange(n_files):
 		row = []
 		for name, gen in header:
 			row.append(gen())
-		if numpy.random.rand()>.99:
-			print row	
+		# if numpy.random.rand()>.9999:
+		# 	print row	
+		if not i%10000:
+			print i
 		writer.writerow(row)
 	f.close()
