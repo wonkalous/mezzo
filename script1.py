@@ -2,7 +2,7 @@ import dataset
 import operators
 import os
 
-def calc(sex, percent, **row):
+def calc(sex, percent):
 	if sex == 'M':
 		return percent
 	else:
@@ -10,7 +10,10 @@ def calc(sex, percent, **row):
 
 	
 fs = [f for f in os.listdir('../data/test1') if f.endswith('.csv') ]
-ds = dataset.Dataset('../data/test1/', fs, ['id', 'sex', 'age', 'percent'], [int, str, int, float])
+ds = dataset.Dataset('../data/test1/', fs, 
+	['id', 'sex', 'age', 'percent'], [int, str, int, float])
+
+# todo path not needed, infer
 print ds.files
 
 op = operators.Transform(calc)

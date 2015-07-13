@@ -28,7 +28,10 @@ class MapQueue(object):
 			reader = csv.reader(open(self.ds.abs_path+input_file))
 			for row in reader:
 				row = enforce_types(self.ds.types, row)
-				result = func(**dict(zip(self.ds.header, row)))
+				args = []
+				for arg_name in func.func_code.co_varnames:
+					args.append(row[self.ds.header.index(arg_name)])
+				result = func(*args)
 
 				dest_key = str(hash(result))[:int(numpy.ceil(math.log10(len(self.ds.files))))]
 				dest = '%s/res_%s.csv' % (dir_name, dest_key)

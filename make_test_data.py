@@ -5,7 +5,7 @@ import os
 
 root_name = "test1"
 n_files = 50
-rows_mean = 1000
+rows_mean = 1000  # aim for 100mb
 header = [
 	('id', lambda: int(numpy.random.random()*1e7)),
 	('sex', lambda: numpy.random.choice(['M', 'F'])),
